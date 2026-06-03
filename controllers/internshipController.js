@@ -19,6 +19,7 @@ exports.createInternship = async (req, res) => {
   }
 };
 
+
 // @route   GET /api/internships
 // @desc    Get all internships (for admin)
 exports.getInternships = async (req, res) => {
@@ -29,3 +30,5 @@ exports.getInternships = async (req, res) => {
     res.status(500).json({ success: false, message: "Server Error", error: error.message });
   }
 };
+
+

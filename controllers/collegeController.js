@@ -7,20 +7,14 @@ const buildImageArray = (files) => {
   if (!files || files.length === 0) return [];
 
   return files.map((file) => ({
-    filename: file.filename,
+    filename: file.path, // Cloudinary URL
     originalName: file.originalname,
   }));
 };
 
-// Helper: delete uploaded files from disk
+// Helper: delete uploaded files (No-op for Cloudinary, can be implemented later)
 const deleteFiles = (filenames) => {
-  const uploadDir = path.join(__dirname, "..", "uploads", "colleges");
-  filenames.forEach((name) => {
-    const filePath = path.join(uploadDir, name);
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-    }
-  });
+  // cloudinary.uploader.destroy() logic would go here
 };
 
 // Helper: parse JSON fields that arrive as strings in multipart/form-data

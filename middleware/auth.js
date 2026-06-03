@@ -3,6 +3,8 @@ const Admin = require("../models/Admin");
 
 // Middleware to protect admin-only routes
 const protectAdmin = async (req, res, next) => {
+  console.log("🔍 [auth.js] protectAdmin called");
+  console.log("Authorization header:", req.headers.authorization);
   let token;
 
   // Check for Bearer token in Authorization header
