@@ -25,6 +25,11 @@ const enquirySchema = new mongoose.Schema(
         "Please provide a valid email address",
       ],
     },
+    course: {
+      type: String,
+      trim: true,
+      maxlength: [100, "Course name cannot exceed 100 characters"],
+    },
   },
   {
     timestamps: true, // adds createdAt and updatedAt automatically

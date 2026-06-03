@@ -5,9 +5,9 @@ const Enquiry = require("../models/Enquiry");
 // @access  Public
 exports.createEnquiry = async (req, res) => {
   try {
-    const { name, phone, email } = req.body;
+    const { name, phone, email, course } = req.body;
 
-    const enquiry = await Enquiry.create({ name, phone, email });
+    const enquiry = await Enquiry.create({ name, phone, email, course });
 
     res.status(201).json({
       success: true,
@@ -92,11 +92,11 @@ exports.getEnquiryById = async (req, res) => {
 // @access  Public
 exports.updateEnquiry = async (req, res) => {
   try {
-    const { name, phone, email } = req.body;
+    const { name, phone, email, course } = req.body;
 
     const enquiry = await Enquiry.findByIdAndUpdate(
       req.params.id,
-      { name, phone, email },
+      { name, phone, email, course },
       { new: true, runValidators: true }
     );
 
