@@ -28,7 +28,8 @@ app.use("/api/admin", require("./routes/adminRoutes"));
 app.use("/api/admin/colleges", require("./routes/collegeRoutes"));
 app.use("/api/partners", require("./routes/partnerRoutes"));
 app.use("/api/internships", require("./routes/internshipRoutes"));
-app.use("/api/consultations", require("./routes/consultationRoutes"));// Health-check route
+app.use("/api/consultations", require("./routes/consultationRoutes"));
+app.use("/api/notifications", require("./routes/notificationRoutes"));// Health-check route
 app.get("/", (_req, res) => {
   res.json({
     success: true,
