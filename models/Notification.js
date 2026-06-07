@@ -7,7 +7,7 @@ const notificationSchema = new mongoose.Schema(
       required: true,
     },
     date: {
-      type: String, // E.g., '26 FEB 2026'
+      type: String, // E.g.,'26 FEB 2026'
     },
     category: {
       type: String,
@@ -15,6 +15,7 @@ const notificationSchema = new mongoose.Schema(
     },
     source: { type: String },
     summary: { type: String },
+    fullDetail: { type: String },
     url: { type: String },
   },
   { timestamps: true }

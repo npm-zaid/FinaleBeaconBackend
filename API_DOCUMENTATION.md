@@ -76,6 +76,9 @@ All admin-protected routes require a **Bearer Token** in the `Authorization` hea
     | :--- | :--- | :--- |
     | `collegeId` | Text | Unique ID (e.g., "IITB-001") |
     | `collegeName` | Text | Full Name of the college |
+    | `collegeType` | Text | Type of college (e.g., "Private", "Gov.") |
+    | `feesRange` | Text | Fees range (e.g., "3lakh to 6lakh") |
+    | `modes` | JSON String | Array of study modes (e.g., `["Online", "Regular"]`) |
     | `establishedYear`| Text | Year (e.g., "1958") |
     | `description` | Text | About the college |
     | `videoLink` | Text | YouTube/Video URL |

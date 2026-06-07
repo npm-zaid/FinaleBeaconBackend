@@ -96,6 +96,9 @@ const apiEndpoints = [
     body: {
       collegeId: "String (required, unique)",
       collegeName: "String (required)",
+      collegeType: "String",
+      feesRange: "String",
+      modes: "Array of Strings",
       establishedYear: "Number",
       description: "String",
       location: "Object { country, state, city, address, pincode, coordinates }",
