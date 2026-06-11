@@ -175,6 +175,7 @@ const collegeSchema = new mongoose.Schema(
     media: { type: mediaSchema, default: () => ({}) },
     placement: { type: placementSchema, default: () => ({}) },
     courses: { type: [courseSchema], default: [] },
+    exams: { type: [String], default: [] },
     reviews: { type: [reviewSchema], default: [] },
   },
   {

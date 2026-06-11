@@ -45,6 +45,7 @@ exports.addCollege = async (req, res) => {
       "courses",
       "reviews",
       "modes",
+      "exams",
     ];
     jsonFields.forEach((field) => {
       if (body[field]) {
@@ -250,6 +251,7 @@ exports.updateCollege = async (req, res) => {
       "courses",
       "reviews",
       "modes",
+      "exams",
     ];
     jsonFields.forEach((field) => {
       if (body[field]) {
