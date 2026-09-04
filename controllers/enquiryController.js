@@ -5,9 +5,15 @@ const Enquiry = require("../models/Enquiry");
 // @access  Public
 exports.createEnquiry = async (req, res) => {
   try {
-    const { name, phone, email, course } = req.body;
+    const { name, phone, email, course, admissionMode } = req.body;
 
-    const enquiry = await Enquiry.create({ name, phone, email, course });
+    const enquiry = await Enquiry.create({
+      name,
+      phone,
+      email,
+      course,
+      admissionMode,
+    });
 
     res.status(201).json({
       success: true,
@@ -92,11 +98,11 @@ exports.getEnquiryById = async (req, res) => {
 // @access  Public
 exports.updateEnquiry = async (req, res) => {
   try {
-    const { name, phone, email, course } = req.body;
+    const { name, phone, email, course, admissionMode } = req.body;
 
     const enquiry = await Enquiry.findByIdAndUpdate(
       req.params.id,
-      { name, phone, email, course },
+      { name, phone, email, course, admissionMode },
       { new: true, runValidators: true }
     );
 

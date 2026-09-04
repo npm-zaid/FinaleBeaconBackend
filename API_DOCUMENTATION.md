@@ -143,6 +143,52 @@ All admin-protected routes require a **Bearer Token** in the `Authorization` hea
 
 ---
 
+## ──────────── 🎥 5. Webinars ────────────
+
+### 📜 Get All Webinars (Public)
+*   **Path:** `GET /api/webinars`
+*   **Auth:** None
+*   **Query Parameters:**
+    | Parameter | Description |
+    | :--- | :--- |
+    | `status` | Filter by `UPCOMING`, `LIVE`, `RECORDED` |
+    | `category` | Filter by category (e.g. `Engineering`, `Medical`) |
+    | `search` | Keyword search in title, speaker name, host |
+
+### ➕ Create Webinar
+*   **Path:** `POST /api/webinars`
+*   **Auth:** None
+*   **Body (JSON):**
+    ```json
+    {
+      "title": "IIT JEE 2025 Strategy",
+      "name": "Dr. Ramesh Kumar",
+      "url": "https://collegy.in/webinars/iit-jee-strategy",
+      "status": "LIVE",
+      "time": "Live now",
+      "viewers": "1.2K watching",
+      "icon": "🎯",
+      "category": "Engineering"
+    }
+    ```
+
+### 🔍 Get Webinar by ID
+*   **Path:** `GET /api/webinars/:id`
+*   **Auth:** None
+*   **Params:** `id` (MongoDB ObjectId)
+
+### ✏️ Update Webinar
+*   **Path:** `PUT /api/webinars/:id`
+*   **Auth:** None
+*   **Params:** `id` (MongoDB ObjectId)
+
+### 🗑️ Delete Webinar
+*   **Path:** `DELETE /api/webinars/:id`
+*   **Auth:** None
+*   **Params:** `id` (MongoDB ObjectId)
+
+---
+
 ## 🖼️ Static Media Access
 Uploaded images are accessible via:
 `http://localhost:5000/uploads/colleges/<filename>`

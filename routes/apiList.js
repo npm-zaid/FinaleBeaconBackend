@@ -137,6 +137,50 @@ const apiEndpoints = [
     auth: "Bearer Token (JWT)",
     params: { id: "MongoDB ObjectId" },
   },
+  // ──────────── Webinars ────────────
+  {
+    method: "GET",
+    path: "/api/webinars",
+    description: "Get all webinars (filter by status, category, search)",
+    auth: "None",
+  },
+  {
+    method: "GET",
+    path: "/api/webinars/:id",
+    description: "Get webinar details by ID",
+    auth: "None",
+    params: { id: "MongoDB ObjectId" },
+  },
+  {
+    method: "POST",
+    path: "/api/webinars",
+    description: "Create a new webinar",
+    auth: "None",
+    body: {
+      title: "String (required)",
+      name: "String (required)",
+      url: "String (required)",
+      status: "String ('UPCOMING' | 'LIVE' | 'RECORDED')",
+      time: "String",
+      viewers: "String",
+      icon: "String",
+      category: "String",
+    },
+  },
+  {
+    method: "PUT",
+    path: "/api/webinars/:id",
+    description: "Update a webinar",
+    auth: "None",
+    params: { id: "MongoDB ObjectId" },
+  },
+  {
+    method: "DELETE",
+    path: "/api/webinars/:id",
+    description: "Delete a webinar",
+    auth: "None",
+    params: { id: "MongoDB ObjectId" },
+  },
 ];
 
 // @desc    List all available API endpoints

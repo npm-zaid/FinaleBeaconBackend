@@ -30,6 +30,11 @@ const enquirySchema = new mongoose.Schema(
       trim: true,
       maxlength: [100, "Course name cannot exceed 100 characters"],
     },
+    admissionMode: {
+      type: String,
+      trim: true,
+      maxlength: [100, "Admission mode cannot exceed 100 characters"],
+    },
   },
   {
     timestamps: true, // adds createdAt and updatedAt automatically
