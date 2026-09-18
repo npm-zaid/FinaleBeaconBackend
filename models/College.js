@@ -165,7 +165,7 @@ const collegeSchema = new mongoose.Schema(
       trim: true,
     },
     collegeType: { type: String, trim: true },
-    feesRange: { type: String, trim: true },
+    annualFees: { type: Number, default: 0 }, // in rupees, e.g. 300000 = 3 Lakh
     modes: { type: [String], default: [] },
     establishedYear: { type: Number, default: 0 },
     description: { type: String, trim: true },

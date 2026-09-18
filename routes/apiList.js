@@ -97,7 +97,7 @@ const apiEndpoints = [
       collegeId: "String (required, unique)",
       collegeName: "String (required)",
       collegeType: "String",
-      feesRange: "String",
+      annualFees: "Number (in rupees, e.g. 300000 for 3 Lakh)",
       modes: "Array of Strings",
       establishedYear: "Number",
       description: "String",
