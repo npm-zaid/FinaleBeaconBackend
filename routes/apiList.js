@@ -81,7 +81,8 @@ const apiEndpoints = [
     query: {
       page: "Number (default 1)",
       limit: "Number (default 10, max 100)",
-      search: "String — searches collegeName, city, state",
+      search: "String — searches collegeName, city, state, collegeType",
+      collegeType: "String — filter by type ('Government', 'Private', 'Online', 'Next Gen', 'Abroad')",
       sortBy: "String — field to sort by (default createdAt)",
       order: "String — 'asc' or 'desc' (default desc)",
     },
@@ -96,7 +97,7 @@ const apiEndpoints = [
     body: {
       collegeId: "String (required, unique)",
       collegeName: "String (required)",
-      collegeType: "String",
+      collegeType: "String ('Government', 'Private', 'Online', 'Next Gen', 'Abroad')",
       annualFees: "Number (in rupees, e.g. 300000 for 3 Lakh)",
       modes: "Array of Strings",
       establishedYear: "Number",

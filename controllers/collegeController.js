@@ -118,17 +118,24 @@ exports.getAllCollegesPublic = async (req, res) => {
     const limit = Math.min(Math.max(parseInt(req.query.limit) || 10, 1), 100);
     const skip = (page - 1) * limit;
 
-    // Search filter (searches collegeName, city, state)
+    // Search filter (searches collegeName, city, state, collegeType)
     const search = req.query.search ? req.query.search.trim() : "";
-    const filter = search
-      ? {
-        $or: [
-          { collegeName: { $regex: search, $options: "i" } },
-          { "location.city": { $regex: search, $options: "i" } },
-          { "location.state": { $regex: search, $options: "i" } },
-        ],
-      }
-      : {};
+    const filter = {};
+
+    if (search) {
+      filter.$or = [
+        { collegeName: { $regex: search, $options: "i" } },
+        { "location.city": { $regex: search, $options: "i" } },
+        { "location.state": { $regex: search, $options: "i" } },
+        { collegeType: { $regex: search, $options: "i" } },
+      ];
+    }
+
+    // Filter by collegeType / category / type (e.g. "Online Col", "Next Gen Col", "Abroad Coll")
+    const collegeTypeQuery = req.query.collegeType || req.query.category || req.query.type;
+    if (collegeTypeQuery && collegeTypeQuery.toLowerCase() !== "all") {
+      filter.collegeType = { $regex: collegeTypeQuery.trim(), $options: "i" };
+    }
 
     // Sort
     const sortField = req.query.sortBy || "nirfRanking.overallRank";
@@ -173,7 +180,12 @@ exports.getAllCollegesPublic = async (req, res) => {
 // @access  Private (Admin)
 exports.getAllColleges = async (req, res) => {
   try {
-    const colleges = await College.find().sort({ createdAt: -1 });
+    const filter = {};
+    const collegeTypeQuery = req.query.collegeType || req.query.category || req.query.type;
+    if (collegeTypeQuery && collegeTypeQuery.toLowerCase() !== "all") {
+      filter.collegeType = { $regex: collegeTypeQuery.trim(), $options: "i" };
+    }
+    const colleges = await College.find(filter).sort({ createdAt: -1 });
 
     res.status(200).json({
       success: true,

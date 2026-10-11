@@ -164,7 +164,11 @@ const collegeSchema = new mongoose.Schema(
       required: [true, "College name is required"],
       trim: true,
     },
-    collegeType: { type: String, trim: true },
+    collegeType: {
+      type: String,
+      trim: true,
+      // The 5 standard types: "Government", "Private", "Online", "Next Gen", "Abroad"
+    },
     annualFees: { type: Number, default: 0 }, // in rupees, e.g. 300000 = 3 Lakh
     modes: { type: [String], default: [] },
     establishedYear: { type: Number, default: 0 },
