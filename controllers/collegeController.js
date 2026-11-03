@@ -114,9 +114,10 @@ exports.addCollege = async (req, res) => {
 exports.getAllCollegesPublic = async (req, res) => {
   try {
     // Pagination params
+    const isAll = req.query.limit === "all" || req.query.limit === "0";
     const page = Math.max(parseInt(req.query.page) || 1, 1);
-    const limit = Math.min(Math.max(parseInt(req.query.limit) || 10, 1), 100);
-    const skip = (page - 1) * limit;
+    const limit = isAll ? 0 : Math.min(Math.max(parseInt(req.query.limit) || 100, 1), 1000);
+    const skip = isAll ? 0 : (page - 1) * limit;
 
     // Search filter (searches collegeName, city, state, collegeType)
     const search = req.query.search ? req.query.search.trim() : "";
@@ -142,15 +143,17 @@ exports.getAllCollegesPublic = async (req, res) => {
     const sortOrder = req.query.order === "desc" ? -1 : 1;
 
     // Run count + data queries in parallel
+    let dataQuery = College.find(filter).sort({ [sortField]: sortOrder });
+    if (!isAll) {
+      dataQuery = dataQuery.skip(skip).limit(limit);
+    }
+
     const [totalColleges, colleges] = await Promise.all([
       College.countDocuments(filter),
-      College.find(filter)
-        .sort({ [sortField]: sortOrder })
-        .skip(skip)
-        .limit(limit),
+      dataQuery,
     ]);
 
-    const totalPages = Math.ceil(totalColleges / limit);
+    const totalPages = isAll ? 1 : Math.ceil(totalColleges / limit);
 
     res.status(200).json({
       success: true,
