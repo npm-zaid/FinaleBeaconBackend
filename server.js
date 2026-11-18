@@ -32,6 +32,8 @@ app.use("/api/consultations", require("./routes/consultationRoutes"));
 app.use("/api/notifications", require("./routes/notificationRoutes"));
 app.use("/api/referrals", require("./routes/referralRoutes"));
 app.use("/api/webinars", require("./routes/webinarRoutes"));
+app.use("/api/mentors",  require("./routes/mentorRoutes"));
+app.use("/api/sessions", require("./routes/sessionRoutes"));
 
 // Health-check route
 app.get("/", (_req, res) => {
